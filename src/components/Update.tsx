@@ -1,9 +1,11 @@
 import { useContext, useRef, useState } from "react"
-import { userContext } from "../App"
 import { Box, Button, Grid2 as Grid, Modal, TextField, } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import { deepOrange } from '@mui/material/colors';
+import { userContext } from "./context";
+import axios from 'axios';
+
 
 const style = {
     position: 'absolute',
@@ -18,9 +20,14 @@ const style = {
 };
 
 const Update = () => {
-    const [user, userDispatch] = useContext(userContext)
+    const context = useContext(userContext);
+    if (!context) {
+        throw new Error("UserContext must be used within a UserProvider");
+    }
+    const user = context.state;
+    const { dispatch } = context;
     const [isUpdate, setIsUpdate] = useState(false)
-    const nameRef = useRef<string>(user.name)
+    const nameRef = useRef<string>(user?.name || '')
     const emailRef = useRef<HTMLInputElement>(null)
     const lastNameRef = useRef<HTMLInputElement>(null)
     const addressRef = useRef<HTMLInputElement>(null)
@@ -28,42 +35,46 @@ const Update = () => {
     const numberPhoneRef = useRef<HTMLInputElement>(null)
     console.log(user);
 
-    const handleSubmit=(e:{preventDefault: () => void;})=>{
+    const handleSubmit = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
-        debugger;
-        console.log(nameRef.current);
-        console.log(emailRef.current);
-        userDispatch({
-            type:'Update',
-            data:{
-                name:nameRef.current?.valueOf()||user.name,
-                email:emailRef.current?.value||user.email,
-                lastName:lastNameRef.current?.value||user.lastName,
-                address:addressRef.current?.value||user.address,
-                numberPhone:numberPhoneRef.current?.value||user.numberPhone,
-                password:passwordRef.current?.value||user.password
-            }
-        })
-        console.log(user);
-
-        setIsUpdate(false)
-    }
-    function stringAvatar(name: string) {
-        if (name == undefined) {
-            name = ' ';
+        try {
+            const res = await axios.put('http://localhost:3001/api/user/', {
+                name: nameRef.current?.valueOf() || user.name,
+                email: emailRef.current?.value || user.email,
+                lastName: lastNameRef.current?.value || user.lastName,
+                address: addressRef.current?.value || user.address,
+                numberPhone: numberPhoneRef.current?.value || user.numberPhone,
+                password: passwordRef.current?.value || user.password,
+                id: user.id
+            }, {
+                headers: {
+                    'user-id': user.id,
+                    //'Content-Type': 'application/json'
+                }
+            })
+            dispatch({
+                type: 'UPDATE_USER',
+                data: {
+                    name: nameRef.current?.valueOf() || user.name,
+                    email: emailRef.current?.value || user.email,
+                    lastName: lastNameRef.current?.value || user.lastName,
+                    address: addressRef.current?.value || user.address,
+                    numberPhone: numberPhoneRef.current?.value || user.numberPhone,
+                    password: passwordRef.current?.value || user.password,
+                    id: user.id
+                }
+            })
+            setIsUpdate(false)
         }
-        return {
-            sx: {
-                bgcolor: deepOrange[500],
-            },
-            children: `${name.split(' ')[0][0]}`,
-        };
+        catch {
+            console.log("error didnt succeed update");
+        }
+
+
     }
+   
     return (<>
-        <Stack direction="row" spacing={2}>
-            <Avatar {...stringAvatar(user.name)} />
-            <h3>{user.name}</h3>
-        </Stack>
+        
         <Grid container>
             <Grid size={4}>
                 <Button color="primary" variant="contained" onClick={() => setIsUpdate(!isUpdate)}>Update</Button>
@@ -72,8 +83,8 @@ const Update = () => {
         <Modal open={isUpdate} onClose={() => setIsUpdate(false)}>
             <Box sx={style}>
                 <form onSubmit={handleSubmit}>
-                    <TextField label='userName' inputRef={nameRef} placeholder= {user.name} />
-                    <TextField label='userLastName' inputRef={lastNameRef}  />
+                    <TextField label='userName' inputRef={nameRef} placeholder={user.name} />
+                    <TextField label='userLastName' inputRef={lastNameRef} />
                     <br />
                     <TextField label='userEmail' inputRef={emailRef} />
                     <TextField label='useraddress' inputRef={addressRef} />
