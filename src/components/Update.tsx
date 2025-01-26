@@ -1,8 +1,5 @@
 import { useContext, useRef, useState } from "react"
 import { Box, Button, Grid2 as Grid, Modal, TextField, } from '@mui/material';
-import Avatar from '@mui/material/Avatar';
-import Stack from '@mui/material/Stack';
-import { deepOrange } from '@mui/material/colors';
 import { userContext } from "./context";
 import axios from 'axios';
 
@@ -27,7 +24,7 @@ const Update = () => {
     const user = context.state;
     const { dispatch } = context;
     const [isUpdate, setIsUpdate] = useState(false)
-    const nameRef = useRef<string>(user?.name || '')
+    const nameRef = useRef<HTMLInputElement>(null)
     const emailRef = useRef<HTMLInputElement>(null)
     const lastNameRef = useRef<HTMLInputElement>(null)
     const addressRef = useRef<HTMLInputElement>(null)
@@ -37,9 +34,11 @@ const Update = () => {
 
     const handleSubmit = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
+        console.log(user.id);
+         
         try {
-            const res = await axios.put('http://localhost:3001/api/user/', {
-                name: nameRef.current?.valueOf() || user.name,
+            const res = await axios.put('http://localhost:3001/api/user/update', {
+                name: nameRef.current?.value|| user.name,
                 email: emailRef.current?.value || user.email,
                 lastName: lastNameRef.current?.value || user.lastName,
                 address: addressRef.current?.value || user.address,
@@ -48,14 +47,14 @@ const Update = () => {
                 id: user.id
             }, {
                 headers: {
-                    'user-id': user.id,
+                    'user-id': user.id?.toString(),
                     //'Content-Type': 'application/json'
                 }
             })
             dispatch({
                 type: 'UPDATE_USER',
                 data: {
-                    name: nameRef.current?.valueOf() || user.name,
+                    name: nameRef.current?.value || user.name,
                     email: emailRef.current?.value || user.email,
                     lastName: lastNameRef.current?.value || user.lastName,
                     address: addressRef.current?.value || user.address,
@@ -66,8 +65,8 @@ const Update = () => {
             })
             setIsUpdate(false)
         }
-        catch {
-            console.log("error didnt succeed update");
+        catch (error:any) {
+            console.error("Login failed:", error.response?.data || error.message);
         }
 
 
@@ -77,7 +76,7 @@ const Update = () => {
         
         <Grid container>
             <Grid size={4}>
-                <Button color="primary" variant="contained" onClick={() => setIsUpdate(!isUpdate)}>Update</Button>
+                <Button sx={{ my: 2, color: 'white', display: 'block' }} onClick={() => setIsUpdate(!isUpdate)}>Update</Button>
             </Grid>
         </Grid>
         <Modal open={isUpdate} onClose={() => setIsUpdate(false)}>

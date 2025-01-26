@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { userContext } from "./context";
 import { deepOrange } from "@mui/material/colors";
 import { Avatar, Stack } from "@mui/material";
+import PersonIcon from '@mui/icons-material/Person';
 
 const UserDetails = () => {
     const context = useContext(userContext);
@@ -22,9 +23,12 @@ const UserDetails = () => {
     }
     const user = context.state;
     return (
+
         <Stack direction="row" spacing={2}>
+            {user.name==="undefined" || ''?(<> <PersonIcon/></>):(<>
             <Avatar {...stringAvatar(user.name||'')} />
-            <h3>{user.name}</h3>
+            </>)}
+           
         </Stack>
     );
 }

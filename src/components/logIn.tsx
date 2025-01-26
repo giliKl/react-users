@@ -14,7 +14,7 @@ const style = {
     boxShadow: 24,
     p: 4,
 };
-const LogIn = () => {
+const LogIn = ({ OnLoginSuccess }: { OnLoginSuccess: Function }) => {
     const [isLogin, setIsLogin] = useState(false);
     const [open, setOpen] = useState(false);
     const context = useContext(userContext);
@@ -27,46 +27,50 @@ const LogIn = () => {
     const handleSubmit = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         try {
+
             const res = await axios.post('http://localhost:3001/api/user/login', {
-                email: emailRef,
-                password: passwordRef
+                email: emailRef.current?.value ,
+                password: passwordRef.current?.value 
             }
             );
-
+            const user = res.data.user;
             dispatch({
                 type: 'LOG IN',
                 data: {
-                    name: '',
-                    email: emailRef.current?.value || '',
-                    lastName: '',
-                    address: '',
-                    numberPhone: '',
-                    password: passwordRef.current?.value || ''
+                    id:user.id ,
+                    name: user.firstName || '',
+                    email: user.email || '',
+                    lastName: user.lastName || '',
+                    address:user.address || '',
+                    numberPhone:user.phone || '',
+                    password: '' // שמירה על אבטחת המידע
                 }
             })
+            console.log("Email:", emailRef.current?.value);
+            console.log("Password:", passwordRef.current?.value);
             setOpen(false);
             setIsLogin(true);
+            OnLoginSuccess();
         }
-        catch {
-            console.log("not succeed log in");
-
+        catch (error:any) {
+            console.error("Login failed:", error.response?.data || error.message);
         }
     }
     return <>
-        <Grid container>
-            <Grid size={4}>
+        {/* <Grid container>
+            <Grid size={4}> */}
                 {!isLogin ?
-                    <Button color="primary" variant="contained" onClick={() => setOpen(!open)}>LogIn</Button> :
+                    <Button sx={{ my: 2, color: 'white', display: 'block' }} onClick={() => setOpen(!open)}>LogIn</Button> :
                     <HomePage />}
-            </Grid>
-        </Grid>
+            {/* </Grid>
+        </Grid> */}
         <Modal open={open} onClose={() => setOpen(false)}>
             <Box sx={style}>
                 <form onSubmit={handleSubmit}>
                     <TextField label="email" inputRef={emailRef}></TextField>
                     <br />
                     <TextField label="password" inputRef={passwordRef}></TextField>
-                    <Button type="submit">LOGIN</Button>
+                    <Button type="submit" >LOGIN</Button>
                 </form>
             </Box>
         </Modal>
