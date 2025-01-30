@@ -1,5 +1,5 @@
 import { createContext, Dispatch, ReactNode, useReducer } from "react";
-import { Action, User, userReducer } from "../Types/User";
+import { Action, User, userReducer } from "../../Types/User";
 
 interface UserContextType {
     state: User;

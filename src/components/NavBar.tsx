@@ -1,20 +1,15 @@
 import * as React from 'react';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import AdbIcon from '@mui/icons-material/Adb';
 import MailIcon from '@mui/icons-material/Mail';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
-import { AppBar, Avatar, Box, Button, Container, MenuItem, Toolbar, Tooltip } from "@mui/material"
+import { AppBar, Box, Button, Container, MenuItem, Toolbar, Tooltip } from "@mui/material"
 import { Link } from 'react-router';
-import UserDetails from './UserDetails';
-import Update from './Update';
-import LogIn from './logIn';
-import Registration from './Registration';
-
-const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-
+import UserDetails from './Users/UserDetails';
+import Update from './Users/Update';
+import LogIn from './Users/logIn';
+import Registration from './Users/Registration';
 
 const NavBar = () => {
     const [isLoggedIn, setIsLoggedIn] = React.useState(false);
@@ -147,8 +142,7 @@ const NavBar = () => {
                         <Box sx={{ flexGrow: 0 }}>
                             <Tooltip title="Open settings">
                                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                    {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> */}
-                                    <UserDetails></UserDetails>
+                                    <UserDetails/>
                                 </IconButton>
                             </Tooltip>
                             <Menu
@@ -167,11 +161,11 @@ const NavBar = () => {
                                 open={Boolean(anchorElUser)}
                                 onClose={handleCloseUserMenu}
                             >
-                                {settings.map((setting) => (
-                                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                        <Typography sx={{ textAlign: 'center' }}>{setting}</Typography>
+                                
+                                    <MenuItem  onClick={handleCloseUserMenu}>
+                                        <Typography sx={{ textAlign: 'center' }}>Log Out</Typography>
                                     </MenuItem>
-                                ))}
+                                
                             </Menu>
                         </Box>
                     </Toolbar>

@@ -37,15 +37,16 @@ const LogIn = ({ OnLoginSuccess }: { OnLoginSuccess: Function }) => {
             dispatch({
                 type: 'LOG IN',
                 data: {
-                    id:user.id ,
+                    id: user.id,
                     name: user.firstName || '',
                     email: user.email || '',
                     lastName: user.lastName || '',
-                    address:user.address || '',
-                    numberPhone:user.phone || '',
-                    password: '' // שמירה על אבטחת המידע
+                    address: user.address || '',
+                    numberPhone: user.phone || '',
+                    password: '' // לשמור על אבטחת המידע
                 }
-            })
+            });
+            
             console.log("Email:", emailRef.current?.value);
             console.log("Password:", passwordRef.current?.value);
             setOpen(false);

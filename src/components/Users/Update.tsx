@@ -38,7 +38,7 @@ const Update = () => {
          
         try {
             const res = await axios.put('http://localhost:3001/api/user/update', {
-                name: nameRef.current?.value|| user.name,
+                firstName: nameRef.current?.value|| user.name,
                 email: emailRef.current?.value || user.email,
                 lastName: lastNameRef.current?.value || user.lastName,
                 address: addressRef.current?.value || user.address,

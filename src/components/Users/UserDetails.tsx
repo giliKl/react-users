@@ -25,8 +25,8 @@ const UserDetails = () => {
     return (
 
         <Stack direction="row" spacing={2}>
-            {user.name==="undefined" || ''?(<> <PersonIcon/></>):(<>
-            <Avatar {...stringAvatar(user.name||'')} />
+            {!user.name || user.name.trim() === ''?(<> <PersonIcon/></>):(<>
+            <Avatar {...stringAvatar(user.name)} />
             </>)}
            
         </Stack>

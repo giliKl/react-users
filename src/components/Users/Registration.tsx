@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from "react"
-import { User } from "../Types/User";
+import { User } from "../../Types/User";
 import axios from "axios";
 import { Box, Button, Grid2 as Grid, Modal, TextField, } from '@mui/material';
 

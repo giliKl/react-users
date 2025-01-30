@@ -1,9 +1,9 @@
 import { createBrowserRouter } from "react-router";
-import AppLayout from "./components/AppLayout";
-import Home from "./components/Home";
-import About from "./components/About";
+import Home from "./components/Users/Home";
+import About from "./components/Users/About";
 import { Update } from "@mui/icons-material";
-import LogIn from "./components/logIn";
+import LogIn from "./components/Users/logIn";
+import AppLayout from "./components/AppLayout";
 
 export const router = createBrowserRouter([
     {
