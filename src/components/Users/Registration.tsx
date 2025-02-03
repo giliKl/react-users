@@ -4,7 +4,7 @@ import { Box, Button, Grid2 as Grid, Modal, TextField, Alert, Stack } from '@mui
 import { User } from "../../Types/UserType";
 
 const Registration = () => {
-    const alertStyle = { position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 400, bgcolor: 'background.paper', outline: 'none',};
+    const alertStyle = { position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 400, bgcolor: 'background.paper', outline: 'none', };
     const style = { position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 400, bgcolor: 'background.paper', border: '2px solid #000', boxShadow: 24, p: 4, };
     const [alertInfo, setAlertInfo] = useState<{ severity: 'success' | 'error' | 'warning' | 'info', message: string } | null>(null);
     const [open, setOpen] = useState(false);
@@ -52,7 +52,7 @@ const Registration = () => {
             setAlertInfo({ severity: 'error', message: 'Please fill in all required fields' });
         }
     }
-    
+
     return (
         <>
             <Modal

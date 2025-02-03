@@ -14,7 +14,7 @@ const style = {
     boxShadow: 24,
     p: 4,
 };
-const alertStyle = { position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 500, bgcolor: 'background.paper', outline: 'none',};
+const alertStyle = { position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 500, bgcolor: 'background.paper', outline: 'none', };
 
 const Update = () => {
     const context = useContext(UserContext);
@@ -60,15 +60,15 @@ const Update = () => {
     }
 
     return (<>
-      <Modal
-                open={!!alertInfo}
-                onClose={() => setAlertInfo(null)} >
-                <Box sx={alertStyle}>
-                    {alertInfo && (
-                        <Alert severity={alertInfo.severity} onClose={() => setAlertInfo(null)} sx={{ width: '100%' }}> {alertInfo.message}
-                        </Alert>)}
-                </Box>
-            </Modal>
+        <Modal
+            open={!!alertInfo}
+            onClose={() => setAlertInfo(null)} >
+            <Box sx={alertStyle}>
+                {alertInfo && (
+                    <Alert severity={alertInfo.severity} onClose={() => setAlertInfo(null)} sx={{ width: '100%' }}> {alertInfo.message}
+                    </Alert>)}
+            </Box>
+        </Modal>
         <Grid container>
             <Grid size={4}>
                 <Button sx={{ my: 2, color: 'white', display: 'block' }} onClick={() => setIsUpdate(!isUpdate)}>Update</Button>

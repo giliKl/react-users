@@ -74,19 +74,10 @@ export default ({ open, onClose }: { open: boolean; onClose: () => void }) => {
             <ListItem key={r.title} disablePadding
               secondaryAction={state.id && r.authorId == state.id && (
                 <Tooltip title="Delete Recipe" arrow>
-                  <IconButton
-                    edge="end"
-                    onClick={(e) => handleDeleteClick(e, r.id)}
-                    sx={{ color: '#B71C1C' }}
-                  >
-                    <DeleteIcon />
-                  </IconButton>
+                  <IconButton edge="end" onClick={(e) => handleDeleteClick(e, r.id)}sx={{ color: '#B71C1C' }}> <DeleteIcon /></IconButton>
                 </Tooltip>
               )} >
-              <ListItemButton component={Link} to={`recipes/${r.id}`} sx={{
-                '&:hover': {
-                  backgroundColor: '#bf00009e',
-                },
+              <ListItemButton component={Link} to={`recipes/${r.id}`} sx={{'&:hover': { backgroundColor: '#bf00009e', },
               }}>
                 <ListItemIcon sx={{ color: "#B71C1C" }}> <MenuBookIcon /></ListItemIcon>
                 <ListItemText primary={r.title} />

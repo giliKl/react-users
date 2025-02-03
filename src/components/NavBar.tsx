@@ -59,7 +59,7 @@ const NavBar = () => {
                         <UserDetails />
                     </IconButton>
                 </Tooltip>
-                {isLoggedIn &&<Menu
+                {isLoggedIn && <Menu
                     sx={{ mt: '45px' }}
                     id="menu-appbar"
                     anchorEl={anchorElUser}

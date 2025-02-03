@@ -5,7 +5,7 @@ import { UserContext } from "../context";
 
 const UserDetails = () => {
     const context = useContext(UserContext);
-    if (!context) {throw new Error("UserContext must be used within a UserProvider");}
+    if (!context) { throw new Error("UserContext must be used within a UserProvider"); }
     const user = context.state;
 
     function stringAvatar(name: string) {
@@ -19,7 +19,7 @@ const UserDetails = () => {
             children: `${name.split(' ')[0][0]}`,
         };
     }
-    
+
     return (
         <Stack direction="row" spacing={2}>
             {!user.firstName || user.firstName.trim() === '' ? (<> <PersonIcon sx={{ color: 'white' }} /></>) : (<>
