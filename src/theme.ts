@@ -3,18 +3,50 @@ import { createTheme } from "@mui/material/styles";
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#8B5E3C", // חום מוקה כהה
+      main: "#000000", // שחור - צבע ה-AppBar והאלמנטים המרכזיים
     },
     secondary: {
-      main: "#D2B48C", // חום בהיר יותר
+      main: "#D32F2F", // אדום כהה
     },
     background: {
-      default: "#F5EDE0", // רקע בצבע מוקה בהיר
-      paper: "#E3D1C4", // רקע קופסאות
+      default: "#FFFFFF", // רקע לבן
+      paper: "#F5F5F5", // רקע מעט אפרפר למודלים וקופסאות
     },
     text: {
-      primary: "#4A3222", // צבע טקסט כהה
-      secondary: "#6D4C41", // חום טיפה בהיר יותר
+      primary: "#000000", // טקסט ראשי בצבע שחור
+      secondary: "#D32F2F", // טקסט משני בצבע אדום כהה
+    },
+    action: {
+      hover: "#B71C1C", // אדום כהה יותר לריחוף
+      selected: "#FF5252", // אדום בהיר לכפתור פעיל
+    },
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "#000000", // כפתור אדום
+          color: "#FFFFFF", // טקסט לבן
+          "&:hover": {
+            backgroundColor: "#B71C1C", // אדום כהה יותר בעת ריחוף
+          },
+        },
+      },
+    },
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "#000000", // AppBar שחור
+          color: "#FFFFFF", // טקסט לבן ב-AppBar
+        },
+      },
+    },
+    MuiDialog: {
+      styleOverrides: {
+        paper: {
+          backgroundColor: "#FFFFFF", // מודלים לבנים
+        },
+      },
     },
   },
 });

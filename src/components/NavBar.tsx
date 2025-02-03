@@ -1,29 +1,29 @@
-import * as React from 'react';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import MailIcon from '@mui/icons-material/Mail';
 import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import { AppBar, Box, Button, Container, MenuItem, Toolbar, Tooltip } from "@mui/material"
+import { Box, Button, MenuItem, Tooltip } from "@mui/material"
 import { Link } from 'react-router';
 import UserDetails from './Users/UserDetails';
 import Update from './Users/Update';
 import LogIn from './Users/logIn';
 import Registration from './Users/Registration';
+import { useContext, useState } from "react";
+import { UserContext } from "./context";
 
 const NavBar = () => {
-    const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const context = useContext(UserContext);
+    if (!context) {
+        throw new Error("UserContext must be used within a UserProvider");
+    }
+    const { state, dispatch } = context;
+    const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+    const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
     const handleLoginSuccess = () => {
         setIsLoggedIn(true);
     };
 
-    const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-    const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
-
-    const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorElNav(event.currentTarget);
-    };
     const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElUser(event.currentTarget);
     };
@@ -36,141 +36,50 @@ const NavBar = () => {
         setAnchorElUser(null);
     };
 
+    const handleLogout = () => {
+        setIsLoggedIn(false);
+        dispatch({ type: "LOG OUT", data: state })
+    };
+
     return (
         <>
-            <AppBar sx={{ position: "static", top: "0px" }}>
-                <Container maxWidth="xl">
-                    <Toolbar disableGutters>
-                        <MailIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-                        <Typography
-                            variant="h6"
-                            noWrap
-                            component="a"
-                            href="#app-bar-with-responsive-menu"
-                            sx={{
-                                mr: 2,
-                                display: { xs: 'none', md: 'flex' },
-                                fontFamily: 'monospace',
-                                fontWeight: 700,
-                                letterSpacing: '.3rem',
-                                color: 'inherit',
-                                textDecoration: 'none',
-                            }}
-                        >
-                            G
-                        </Typography>
-
-                        <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-                            <IconButton
-                                size="large"
-                                aria-label="account of current user"
-                                aria-controls="menu-appbar"
-                                aria-haspopup="true"
-                                onClick={handleOpenNavMenu}
-                                color="inherit"
-                            >
-                                <MenuIcon />
-                            </IconButton>
-                            <Menu
-                                id="menu-appbar"
-                                anchorEl={anchorElNav}
-                                anchorOrigin={{
-                                    vertical: 'bottom',
-                                    horizontal: 'left',
-                                }}
-                                keepMounted
-                                transformOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'left',
-                                }}
-                                open={Boolean(anchorElNav)}
-                                onClose={handleCloseNavMenu}
-                                sx={{ display: { xs: 'block', md: 'none' } }}
-                            >
-                                <MenuItem onClick={handleCloseNavMenu}>
-                                    <Typography sx={{ textAlign: 'center',textDecorationLine:"none" }} component={Link} to='/about' >about</Typography>                                    
-                                </MenuItem>
-                                <MenuItem onClick={handleCloseNavMenu}>
-                                    <Typography sx={{ textAlign: 'center',textDecorationLine:"none" }} component={Link} to='/' >Home</Typography>                       
-                                </MenuItem>
-                                
-                            </Menu>
-                            {isLoggedIn ? (<>
-                                <Update />
-                            </>) : (<>
-                                <LogIn OnLoginSuccess={handleLoginSuccess} />
-                                <Registration />
-                            </>)}
-                        </Box>
-                        <MailIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-                        <Typography
-                            variant="h5"
-                            noWrap
-                            component="a"
-                            href="#app-bar-with-responsive-menu"
-                            sx={{
-                                mr: 2,
-                                display: { xs: 'flex', md: 'none' },
-                                flexGrow: 1,
-                                fontFamily: 'monospace',
-                                fontWeight: 700,
-                                letterSpacing: '.3rem',
-                                color: 'inherit',
-                                textDecoration: 'none',
-                            }}
-                        >
-                            LOGO
-                        </Typography>
-                        <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                            <Button
-                                component={Link} to='/about'
-                                onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'white', display: 'block',textDecorationLine:"none"}}>ABOUT
-                            </Button>
-                            <Button
-                                component={Link} to='/'
-                                onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'white', display: 'block',textDecorationLine:"none"}}>HOME
-                            </Button>
-                            {isLoggedIn ? (<>
-                                <Update />
-                            </>) : (<>
-                                <LogIn OnLoginSuccess={handleLoginSuccess} />
-                                <Registration />
-                            </>)}
-                        </Box>
-                        <Box sx={{ flexGrow: 0 }}>
-                            <Tooltip title="Open settings">
-                                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                    <UserDetails/>
-                                </IconButton>
-                            </Tooltip>
-                            <Menu
-                                sx={{ mt: '45px' }}
-                                id="menu-appbar"
-                                anchorEl={anchorElUser}
-                                anchorOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                keepMounted
-                                transformOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                open={Boolean(anchorElUser)}
-                                onClose={handleCloseUserMenu}
-                            >
-                                
-                                    <MenuItem  onClick={handleCloseUserMenu}>
-                                        <Typography sx={{ textAlign: 'center' }}>Log Out</Typography>
-                                    </MenuItem>
-                                
-                            </Menu>
-                        </Box>
-                    </Toolbar>
-                </Container>
-            </AppBar>
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                <Button component={Link} to='/about' onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block', textDecorationLine: "none" }}>ABOUT </Button>
+                <Button component={Link} to='/' onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block', textDecorationLine: "none" }}>HOME</Button>
+                {isLoggedIn ? (<>
+                    <Update />
+                </>) : (<>
+                    <LogIn OnLoginSuccess={handleLoginSuccess} />
+                    <Registration />
+                </>)}
+            </Box>
+            <Box sx={{ flexGrow: 0 }}>
+                <Tooltip title="Open settings">
+                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                        <UserDetails />
+                    </IconButton>
+                </Tooltip>
+                {isLoggedIn &&<Menu
+                    sx={{ mt: '45px' }}
+                    id="menu-appbar"
+                    anchorEl={anchorElUser}
+                    anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                    }}
+                    open={Boolean(anchorElUser)}
+                    onClose={handleCloseUserMenu}
+                >
+                    <MenuItem onClick={handleCloseUserMenu}>
+                        <Typography sx={{ textAlign: 'center' }} onClick={handleLogout}>Log Out</Typography>
+                    </MenuItem>
+                </Menu>}
+            </Box>
         </>
     )
 }
