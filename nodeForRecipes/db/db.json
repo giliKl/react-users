@@ -1,0 +1,129 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "firstName": "name1",
+      "lastName": "name2",
+      "email": "n@n.com",
+      "password": "12345",
+      "address": "address 1 5",
+      "phone": "0548654321"
+    },
+    {
+      "id": 1738620364335,
+      "email": "p@k",
+      "password": "1",
+      "firstName": "hy",
+      "lastName": "lp",
+      "address": "בן זכאי",
+      "phone": "4174541"
+    },
+    {
+      "id": 1738623717499,
+      "email": "k@k",
+      "password": "1",
+      "firstName": "lo",
+      "lastName": "",
+      "address": "",
+      "phone": ""
+    },
+    {
+      "id": 1738623764313,
+      "email": "p@o",
+      "password": "1"
+    },
+    {
+      "id": 1738624133177,
+      "email": "k@q",
+      "password": "1"
+    },
+    {
+      "id": 1738624271449,
+      "email": "k@t",
+      "password": "1"
+    }
+  ],
+  "recipes": [
+    {
+      "id": 1,
+      "title": "Pasta Alfredo",
+      "description": "Pasta with a rich cream sauce",
+      "authorId": 1,
+      "ingredients": [
+        "200g pasta",
+        "100ml cream",
+        "50g parmesan cheese",
+        "1 clove garlic",
+        "Salt",
+        "Pepper"
+      ],
+      "instructions": "Cook the pasta according to the package instructions. In a separate pan, heat the cream and add the garlic. Stir in the parmesan cheese until melted. Combine the pasta with the sauce and season with salt and pepper."
+    },
+    {
+      "id": 2,
+      "title": "Chicken Curry",
+      "description": "Spicy and flavorful chicken curry",
+      "authorId": 1,
+      "ingredients": [
+        "500g chicken breast",
+        "1 onion",
+        "2 cloves garlic",
+        "400ml coconut milk",
+        "Salt",
+        "Pepper"
+      ],
+      "instructions": "Heat the oil in a pan and sauté the chopped onion and garlic until golden. Add the chicken pieces and cook until browned. Stir in the curry powder and cook for another minute. Pour in the coconut milk and simmer for 20 minutes. Season with salt and pepper."
+    },
+    {
+      "id": 3,
+      "title": "Chocolate Cake",
+      "description": "Rich and moist chocolate cake",
+      "authorId": 3,
+      "ingredients": [
+        "200g flour",
+        "200g sugar",
+        "100g cocoa powder",
+        "1 tsp baking powder",
+        "1 tsp baking soda",
+        "2 eggs",
+        "240ml milk",
+        "120ml vegetable oil",
+        "2 tsp vanilla extract",
+        "240ml boiling water"
+      ],
+      "instructions": "Preheat the oven to 175°C (350°F). In a large bowl, mix the flour, sugar, cocoa powder, baking powder, and baking soda. Add the eggs, milk, oil, and vanilla extract, and mix until smooth. Gradually add the boiling water and mix until well combined. Pour the batter into a greased baking pan and bake for 30-35 minutes. Let cool before serving."
+    },
+    {
+      "id": 4,
+      "title": "Alfajores ",
+      "description": "Alfajores are delicious Moroccan butter cookies with a soft texture and a hint of cinnamon, often paired with chopped nuts. These cookies are very popular during holidays, especially Passover, and offer a warm, homely feeling with every bite. The exterior is slightly crisp, while the inside remains soft and melt-in-your-mouth.\n",
+      "authorId": "4",
+      "ingredients": [
+        "2 cups flour",
+        "1/2 cup sugar",
+        "1/2 cup sugar",
+        "1 cup butter (at room temperature)",
+        "1 egg",
+        "1 tbsp cinnamon",
+        "1/2 cup chopped hazelnuts (or pistachios, optional)"
+      ],
+      "instructions": "Preheat the oven to 180°C (350°F) and place a rack in the middle of the oven.\nIn a large bowl, cream the butter with the sugar until the mixture becomes smooth and fluffy.\nAdd the egg and mix well.\nAdd the flour, cinnamon, and chopped hazelnuts and stir until the dough comes together.\nCover the dough with plastic wrap and refrigerate for at least an hour.\nAfter an hour, roll the dough into small balls, about the size of a hazelnut, and place them on a baking sheet lined with parchment paper.\nIn a separate bowl, mix the sugar and cinnamon for coating. Roll each cookie ball in the sugar-cinnamon mixture and place them back on the baking sheet.\nBake for 15-20 minutes, or until the cookies are lightly golden.\nLet them cool to room temperature before serving.\nEnjoy! 😋\n\n\n\n\n"
+    },
+    {
+      "id": 5,
+      "title": "Classic Italian Pizza",
+      "description": "Classic Italian pizza is a thin, crispy dough with a soft and airy texture, topped with fresh tomato sauce and quality mozzarella cheese. This recipe follows a traditional Italian approach, bringing the authentic taste of Italy to your home. You can add your favorite toppings to create your perfect pizza.\n",
+      "authorId": "5",
+      "ingredients": [
+        "2.5 cups all-purpose flour (or pizza flour)",
+        "1 tbsp dry yeast",
+        "1 tbsp sugar",
+        "1/2 cup warm water (not boiling)",
+        "2 tbsp olive oil",
+        "1/2 tsp salt",
+        "1/2 cup cold water"
+      ],
+      "instructions": "Prepare the Dough:\n\nIn a bowl, dissolve the yeast and sugar in warm water and let it sit for 5-10 minutes until it becomes foamy.\nIn a large bowl, add the flour, the yeast mixture, olive oil, and salt. Begin kneading and gradually add the cold water until the dough comes together.\nContinue kneading the dough for about 8-10 minutes until smooth and elastic. If the dough is too sticky, add a little more flour.\nCover the dough with plastic wrap or a damp towel, and let it rise for about an hour, or until it has doubled in size.\nPrepare the Sauce:\n\nIn a pan, heat the olive oil and sauté the minced garlic for about a minute until fragrant.\nAdd the tomato paste, sugar, salt, oregano, and basil, and stir well. Let the sauce simmer on low heat for about 10-15 minutes until it thickens and the flavors meld together.\nAssemble the Pizza:\n\nPreheat your oven to 250°C (450°F).\nOn a floured surface, roll out the dough into a thin circle (about 0.5 cm thick).\nTransfer the dough to a pizza pan or a flat baking sheet lined with parchment paper.\nSpread the tomato sauce evenly over the dough.\nSlice the mozzarella cheese and place it on top of the sauce.\nAdd any additional toppings you desire (such as mushrooms, cherry tomatoes, olives, etc.).\nBaking:\n\nBake the pizza for 10-15 minutes, or until the crust is golden and the cheese is melted and bubbling.\nIf you like, you can add some grated Parmesan or more pesto after baking.\nServing:\n\nSlice and serve immediately! Optionally, garnish with fresh basil or a drizzle of pesto.\nEnjoy your delicious homemade pizza! 🍕😋\n"
+    }
+  ]
+}
